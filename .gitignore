@@ -1,0 +1,3 @@
+*.mjs
+./dist/
+./node_modules/**/*
