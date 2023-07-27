@@ -15,6 +15,7 @@
     "@topcli/spinner": "^2.1.1",
     "@topcli/wcwidth": "^1.0.1",
     "chalk": "^5.3.0",
+    "husky": "^8.0.3",
     "prompts": "link:@types/@topcli/prompts"
   },
   "devDependencies": {
