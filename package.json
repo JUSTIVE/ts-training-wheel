@@ -5,7 +5,7 @@
   "type": "module",
   "main": "pre-commit.mjs",
   "scripts": {
-    "build": "rollup m"
+    "build": "esbuild ./src/App.mts --bundle --format=esm --platform=node --outfile=./dist/index.mjs --mangle-props=_$ --minify"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,9 @@
     "prompts": "link:@types/@topcli/prompts"
   },
   "devDependencies": {
-    "@types/node": "^20.4.2"
+    "@types/node": "^20.4.2",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0"
   }
 }
