@@ -12,11 +12,11 @@ const _ALWAYS_FAILING_ONLY_FOR_TESTING: Step.t = {
 const BRANCH_CHECKING: Step.t = {
 	emoji: "🌲",
 	name: "Branch Checking",
-	command: ({ unSafeBranchList }) =>
-		`git rev-parse --abbrev-ref HEAD | grep -E "${unSafeBranchList.join("|")}"`,
+	command: ({ safeBranch }) =>
+		`exit ${safeBranch?0:1}`,
 	errorMessage:
     "위험한 브랜치에 커밋을 하고 있습니다. 다른 브랜치에서 작업해 주세요",
-	expectedExitCode: 1,
+	expectedExitCode: 0,
 };
 
 const FORMAT_TYPESCRIPT_FILES: Step.t = {
@@ -30,7 +30,7 @@ const FORMAT_TYPESCRIPT_FILES: Step.t = {
 	postAction: PostAction.STAGE_TS_FILES,
 };
 
-const LINT_CHECKING: Step.t = {
+const ESLINT_CHECKING: Step.t = {
 		emoji: "📏",
 		name: "Lint Checking",
 		command: ({ sourceDir }) =>
@@ -57,9 +57,11 @@ const BUILD: Step.t = {
 export const STEP_PRESET = {
 	_ALWAYS_FAILING_ONLY_FOR_TESTING,
 	BRANCH_CHECKING,
-	LINT_CHECKING,
+	ESLINT_CHECKING,
 	FORMAT_TYPESCRIPT_FILES,
 	TYPE_CHECKING,
 	BUILD
 };
 
+export const STEPS_KIND = Object.keys(STEP_PRESET);
+export type STEPS_VARIANT = keyof typeof STEP_PRESET;

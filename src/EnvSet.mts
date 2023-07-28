@@ -40,23 +40,16 @@ const stagedFileList = await getStagedFileList();
 const TSFilesList = getStagedTSFileList(stagedFileList);
 const ProductTSFilesList = getProductTSFileList(TSFilesList);
 
-// export const determineSafeBranchEffect = (unSafeBranchList:string[]):Effect.Effect<never, boolean, boolean>=> 
-//   Effect.try({
-//     try: () => {execSync(`git rev-parse --abbrev-ref HEAD | grep -E "${unSafeBranchList.join("|")}"`); return true},
-//     catch: () => false
-//   })
-
 export const determineSafeBranch = (unSafeBranchList:string[]):boolean=> 
 {
   try{
     execSync(`git rev-parse --abbrev-ref HEAD | grep -E "${unSafeBranchList.join("|")}"`); 
-    return true
-  }
-  catch{
     return false
   }
+  catch{
+    return true
+  }
 }
-
 
 export const make = async ({sourceDir,unSafeBranchList}:Config.t): Promise<t> => {
   return ({
@@ -64,7 +57,7 @@ export const make = async ({sourceDir,unSafeBranchList}:Config.t): Promise<t> =>
     stagedFileList,
     TSFilesList,
     ProductTSFilesList,
-    stat: Stat.Stat,
+    stat: Stat.getStat(),
     sourceDir,
     unSafeBranchList,
     safeBranch: pipe(unSafeBranchList,determineSafeBranch),

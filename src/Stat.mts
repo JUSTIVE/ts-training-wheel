@@ -15,7 +15,7 @@ export type t = {
   };
 };
 
-const getStat = (): t => {
+export const getStat = (): t => {
 	const files: FileDiff[] = execSync("git diff --cached --numstat")
 		.toString()
 		.split("\n")
@@ -40,20 +40,18 @@ const getStat = (): t => {
 	return { files, total };
 };
 
-export const Stat = getStat();
-
 //log with box and text in it
 
 export const Log = ({ files, total: { added, deleted } }: t) => {
 	const logFile = (value: FileDiff) => {
-		const tooManyConstraint = 200;
+		const tooManyConstraint = 50;
 		const tooManyAdded = value.added > tooManyConstraint;
 		const added = (tooManyAdded ? chalk.yellow : chalk.green)(value.added);
 
-		const tooMayDeleted = value.deleted > tooManyConstraint;
-		const deleted = (tooMayDeleted ? chalk.yellow : chalk.red)(value.deleted);
+		const tooManyDeleted = value.deleted > tooManyConstraint;
+		const deleted = (tooManyDeleted ? chalk.yellow : chalk.red)(value.deleted);
 
-		const manyChanged = tooManyAdded || tooMayDeleted;
+		const manyChanged = tooManyAdded || tooManyDeleted;
 		const filename = (manyChanged ? chalk.yellow : chalk.cyan)(value.filename);
 		console.log(`${added}\t${deleted}\t${filename}`);
 	};

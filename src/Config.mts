@@ -1,7 +1,7 @@
-import * as Step from './Step.mjs'
+import { STEPS_VARIANT } from './Step.Preset.mjs';
 
 export type t = {
-  steps: Step.t[];
+  steps: STEPS_VARIANT[];
   unSafeBranchList:string[],
   sourceDir:string[]
 }
@@ -14,17 +14,26 @@ export type t = {
 //     return Effect.succeed(1)
 //   }
 // }
-export const create = async()=>{
-  
+export const create = async():Promise<t>=>{
+  return ({
+    steps:[],
+    unSafeBranchList:["main","master"],
+    sourceDir:["./src"]
+  })
 }
 
 export const load = async(): Promise<t> => {
-  //read file
+  try{
+    //read file
 
-  //if file not exists, make file and return gathered info
-  return ({
-    steps: [],
-    unSafeBranchList: ["main", "master"],
-    sourceDir: ["./src"]
-  })
+    //if file not exists, make file and return gathered info
+    return ({
+      steps: [],
+      unSafeBranchList: ["main", "master"],
+      sourceDir: ["./src"]
+    })
+  }
+  catch{
+    return await create()
+  }
 }
