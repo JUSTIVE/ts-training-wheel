@@ -29,7 +29,9 @@ export const getStat = (): t => {
 			};
 		});
 
-	const total = files.reduce(
+	const total = files
+		.filter(({added,deleted})=> isNaN(added) || isNaN(deleted))
+		.reduce(
 		(acc, { added, deleted }) => ({
 			added: acc.added + added,
 			deleted: acc.deleted + deleted,
