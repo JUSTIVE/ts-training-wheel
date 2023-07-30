@@ -23,7 +23,7 @@ const determine = (): O.Option<t> => {
 }
 
 const askPackageManager = async():Promise<t> =>{
-  const response = await select("이 프로젝트에서 사용하는 패키지 매니저는 어떤 것인가요?",{choices:[
+  const response = await select("Select your package manager",{choices:[
     {value:"npm", label:"npm"},
     {value:"yarn", label:"yarn"},
     {value:"pnpm", label:"pnpm"}
