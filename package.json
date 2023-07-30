@@ -19,12 +19,14 @@
     "husky": "^8.0.3",
     "os-locale": "^6.0.2",
     "prompts": "link:@types/@topcli/prompts",
-    "ts-pattern": "^5.0.4"
+    "ts-pattern": "^5.0.4",
+    "typescript": "^5.1.6"
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
+    "esbuild": "^0.18.17",
     "eslint": "^8.45.0"
   }
 }
