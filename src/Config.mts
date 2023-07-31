@@ -1,6 +1,4 @@
-import {  readFileSync } from 'fs';
 import { STEPS_VARIANT } from './Step.Preset.mjs';
-import { Effect, pipe } from 'effect';
 
 export type t = {
   steps: STEPS_VARIANT[];
@@ -22,32 +20,20 @@ export const create = async():Promise<t>=>{
     steps:[],
     unSafeBranchList:["main","master"],
     sourceDir:["./src"],
-    verbose:true
+    verbose:false
   })
-}
-
-class ConfigLoadError {
-  readonly _tag = "ConfigLoadError"
 }
 
 export const load = async(): Promise<t> => {
   try{
-    //read file "tstw.config.json"
+    //read file
+
     //if file not exists, make file and return gathered info
-    
-    const configFromFile = () => 
-      Effect.try({
-        try: () => pipe(readFileSync('./tstw.config.json').toString(),JSON.parse),
-        catch: () => new ConfigLoadError()
-      })
-    
-
-
     return ({
       steps: [],
       unSafeBranchList: ["main", "master"],
       sourceDir: ["./src"],
-      verbose:true
+      verbose: false
     })
   }
   catch{
