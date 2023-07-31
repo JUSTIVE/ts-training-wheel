@@ -1,5 +1,5 @@
 import * as Stat from "./Stat.mjs";
-import * as Config from "./Config.mjs"
+import * as Config from "./Config.js"
 import * as PackageManager from "./PackageManager.mjs";
 import { execSync } from 'child_process';
 import { osLocale } from 'os-locale';

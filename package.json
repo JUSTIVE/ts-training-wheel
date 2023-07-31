@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mobily/ts-belt": "4.0.0-rc.5",
     "@topcli/prompts": "^1.1.0",
     "@topcli/spinner": "^2.1.1",
     "@topcli/wcwidth": "^1.0.1",

@@ -1,0 +1,12 @@
+{
+  "steps": [
+    "BRANCH_CHECKING",
+    "FORMAT_TYPESCRIPT_FILES",
+    "ESLINT_CHECKING",
+    "TYPE_CHECKING",
+    "BUILD"
+  ],
+  "unSafeBranchList": ["main", "master"],
+  "sourceDir": ["./src"],
+  "verbose": false
+}

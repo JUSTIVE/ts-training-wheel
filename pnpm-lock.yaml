@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@mobily/ts-belt':
+    specifier: 4.0.0-rc.5
+    version: 4.0.0-rc.5
   '@topcli/prompts':
     specifier: ^1.1.0
     version: 1.1.0
@@ -356,6 +359,11 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@mobily/ts-belt@4.0.0-rc.5:
+    resolution: {integrity: sha512-HLWJ8yKrfwdMzCvckRunrAL8Z+K5q31FdY6JzhkBp8o6uQsVuzf26KFyno1s6n6GB78OJEsjs57SaDk9plsJhA==}
+    engines: {node: '>= 10.*'}
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

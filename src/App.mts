@@ -6,7 +6,7 @@ import { Spinner } from "@topcli/spinner";
 import * as Stat from "./Stat.mjs";
 import * as Decorator from "./Decorator.mjs";
 import { pipe } from 'effect';
-import * as Config from './Config.mjs'
+import * as Config from './Config.js'
 
 
 type Running = EnvSet.t
