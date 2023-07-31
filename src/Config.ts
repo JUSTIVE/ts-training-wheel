@@ -41,23 +41,21 @@ const fromJSONString = (json:string):O.Option<t> => {
 
   return pipe(
     steps,
-    O.flatMap(steps=>{
-      return pipe(
+    O.flatMap(steps=>pipe(
         unSafeBranchList,    
-        O.flatMap(unSafeBranchList=>{
-          return pipe(
+        O.flatMap(unSafeBranchList=>pipe(
             sourceDir,        
-            O.map(sourceDir=>{
-              return ({
+            O.map(sourceDir=>
+              ({
                 steps,
                 unSafeBranchList,
                 sourceDir,
                 verbose
               })
-            })
+            )
           )
-      }))
-    })
+      ))
+    )
   )
 }
 
@@ -108,6 +106,8 @@ const askAndMake = async ():Promise<t> => {
 }
 
 export const load = async(): Promise<t> => {
+
+  //TODO: Partially loaded config
   const loadedConfig = await readFromFile(CONFIG_PATH)
   if(O.isSome(loadedConfig))
     return loadedConfig
