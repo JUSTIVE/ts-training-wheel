@@ -15,6 +15,7 @@ export type t = {
   unSafeBranchList: string[];
 	safeBranch: boolean
   locale?: string;
+  verbose:boolean;
 };
 
 type StagedFile = string
@@ -51,9 +52,9 @@ export const determineSafeBranch = (unSafeBranchList:string[]):boolean=>
   }
 }
 
-export const make = async ({sourceDir,unSafeBranchList}:Config.t): Promise<t> => {
+export const make = async ({sourceDir,unSafeBranchList,verbose}:Config.t): Promise<t> => {
   return ({
-    packageManager: await PackageManager.get(),
+    packageManager: await PackageManager.get(verbose),
     stagedFileList,
     TSFilesList,
     ProductTSFilesList,
@@ -62,5 +63,6 @@ export const make = async ({sourceDir,unSafeBranchList}:Config.t): Promise<t> =>
     unSafeBranchList,
     safeBranch: pipe(unSafeBranchList,determineSafeBranch),
     locale: await osLocale(),
+    verbose
   })
 }

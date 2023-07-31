@@ -4,6 +4,7 @@ import {select} from '@topcli/prompts'
 import {pipe} from 'effect/function'
 import fs from 'fs'
 import {match} from 'ts-pattern'
+import { VerboseLog } from './Decorator.mjs'
 
 export type t = "npm" | "yarn" | "pnpm"
 
@@ -33,9 +34,13 @@ const askPackageManager = async():Promise<t> =>{
     : await askPackageManager()
 }
 
-export const get = async ():Promise<t> => {
-  return await pipe(
+export const get = async (verbose:boolean):Promise<t> => {
+  const packageManager =  await pipe(
     determine(),
     O.getOrElse(askPackageManager)
   )
+  if(verbose)
+    VerboseLog(`Detected Package Manager is ${packageManager}`)
+
+  return packageManager
 }

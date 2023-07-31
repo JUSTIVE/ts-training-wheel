@@ -19,6 +19,7 @@
     "husky": "^8.0.3",
     "os-locale": "^6.0.2",
     "prompts": "link:@types/@topcli/prompts",
+    "ts-command-line-args": "^2.5.1",
     "ts-pattern": "^5.0.4",
     "typescript": "^5.1.6"
   },

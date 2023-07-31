@@ -1,4 +1,4 @@
-import { ChalkInstance } from "chalk";
+import chalk, { ChalkInstance } from "chalk";
 import wcswidth from "@topcli/wcwidth";
 export const Box = (message: string, colorChalk: ChalkInstance) => {
 	const messageLength = wcswidth(message);
@@ -8,3 +8,11 @@ export const Box = (message: string, colorChalk: ChalkInstance) => {
 	console.log(`${colorChalk("┃")} ${message} ${colorChalk("┃")}`);
 	console.log(colorChalk(`┗━${boxBar}━┛\n`));
 };
+
+export const Line = (message:string, colorChalk:ChalkInstance) => {
+	console.log(colorChalk(message))
+}
+
+export const VerboseLog = (message:string) => {
+	Line(`verbose:: ${message}`,chalk.gray)
+}
