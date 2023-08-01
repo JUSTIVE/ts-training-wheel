@@ -60,14 +60,14 @@ export const runner = async (step: t, envSet: EnvSet.t): Promise<StepResult> => 
 				const errorMessage = getErrorMessage(envSet, step);
 
 				spinner.failed(
-					`${chalk.bgRed("FAIL")} ${chalk.red(
+					`${chalk.bold.bgRed("FAIL")} ${chalk.red(
 						`${name} 에 실패했습니다`
 					)} > ${chalk.gray(errorMessage)}`
 				);
 				reject("FAIL");
 				return;
 			} else {
-				spinner.succeed(`${chalk.bgGreen("DONE")} ${chalk.green(`${name} `)}`);
+				spinner.succeed(`${chalk.bold.bgGreen("DONE")} ${chalk.green(`${name} `)}`);
 				if (step.postAction) {
 					step.postAction(envSet);
 				}

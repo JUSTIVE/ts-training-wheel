@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "type": "module",
-  "main": "pre-commit.mjs",
+  "main": "./dist/index.mjs",
   "scripts": {
-    "build": "tsc -p . --noEmit && esbuild ./src/App.mts --bundle --format=esm --platform=node --outfile=./dist/index.mjs --mangle-props=_$ --minify"
+    "build": "tsc -p . --noEmit && esbuild ./src/App.mts --bundle --format=esm --platform=node --outfile=./dist/index.mjs --mangle-props=_$ --minify && esbuild ./src/Setup.mts --bundle --format=esm --platform=node --outfile=./dist/setup.mjs --mangle-props=_$ --minify"
   },
   "keywords": [],
   "author": "",
