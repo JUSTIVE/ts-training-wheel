@@ -110,6 +110,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/*.mts"],
+  "include": ["src/*.mts", "src/Config.ts"],
   "exclude": ["js", "./dist/**/*"]
 }

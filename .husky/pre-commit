@@ -1,0 +1,1 @@
+pnpm build && node ./dist/index.mjs
