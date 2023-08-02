@@ -22,7 +22,6 @@
     "prompts": "link:@types/@topcli/prompts",
     "ts-command-line-args": "^2.5.1",
     "ts-pattern": "^5.0.4",
-    "typesafe-i18n": "^5.26.0",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
@@ -30,6 +29,8 @@
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "esbuild": "^0.18.17",
-    "eslint": "^8.46.0"
+    "eslint": "^8.46.0",
+    "prettier": "3.0.0",
+    "prettier-eslint": "^15.0.1"
   }
 }

@@ -1,4 +1,4 @@
-export const setup = ()=>{}
+export const setup = () => {};
 
 //detect husky
 //setup husky command
