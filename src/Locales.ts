@@ -1,6 +1,8 @@
 import { O, pipe } from '@mobily/ts-belt';
-import { osLocale } from 'os-locale';
-import { match } from 'ts-pattern';
+import { P, match } from 'ts-pattern';
+import { execSync } from 'child_process';
+import { Platform } from './Platform';
+import { osLocaleSync } from 'os-locale';
 
 export type Locales = 
   | "en-US"
@@ -9,17 +11,23 @@ export type Locales =
 
 export const makeLocale = (value:string):O.Option<Locales>=>
   match(value)
-  .with("en-US", O.Some)
-  .with("ko-KR", O.Some)
-  .with("ja-JP", O.Some)
+  .with(P.string.startsWith("en"), ()=>O.Some("en-US"))
+  .with(P.string.startsWith("ko"),()=>O.Some("ko-KR"))
+  .with(P.string.startsWith("ja"),()=>O.Some("ja-JP"))
   .otherwise(()=>O.None)
 
-export const getLocale = async ():Promise<Locales>=>{
-  //detect nodejs locale
+export const getLocale = async (platform:Platform):Promise<Locales>=>{
+  const getLocaleStringByPlatform:O.Option<string> = 
+    match(platform)
+    .with("darwin",()=>pipe(
+      execSync("defaults read -g AppleLocale"),
+      (buffer)=>buffer.toString())
+    )
+    .otherwise(()=>osLocaleSync())
   return pipe(
-    await osLocale(),
+    getLocaleStringByPlatform,
     O.fromNullable,
     O.flatMap(makeLocale),
-    O.getWithDefault<Locales>("en-US"),
+    O.getWithDefault<Locales>("en-US"),  
   )
 }

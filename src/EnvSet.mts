@@ -5,6 +5,7 @@ import { execSync } from "child_process";
 
 import { pipe } from "effect";
 import { Locales, getLocale } from './Locales.js';
+import {  getPlatform } from './Platform';
 
 export type t = {
   packageManager: PackageManager.t;
@@ -60,7 +61,7 @@ export const make = async ({
   unSafeBranchList,
   verbose,
 }: Config.t): Promise<t> => {
-  const locale = await getLocale();
+  const locale = await getLocale(getPlatform());
   return {
     packageManager: await PackageManager.get(verbose,locale),
     stagedFileList,
