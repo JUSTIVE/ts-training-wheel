@@ -5,7 +5,7 @@ import { execSync } from "child_process";
 
 import { pipe } from "effect";
 import { Locales, getLocale } from './Locales.js';
-import {  getPlatform } from './Platform';
+import { getPlatform } from './Platform';
 
 export type t = {
   packageManager: PackageManager.t;
