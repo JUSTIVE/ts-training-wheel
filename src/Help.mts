@@ -1,3 +1,1 @@
-export const RenderHelper = () => {
-    
-}
+export const RenderHelper = () => {};
