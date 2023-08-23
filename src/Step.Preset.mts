@@ -95,8 +95,21 @@ const BUILD: Step.t = {
 		.with("ja-JP",()=>"ビルドチェック")
 		.exhaustive(),
   command: ({ packageManager }) => `${packageManager} run build`,
-  skipCondition: [SkipCondition.NO_PRODUCT_TYPESCRIPT_FILES],
+  skipCondition: [SkipCondition.NO_PRODUCT_TYPESCRIPT_FILES,SkipCondition.NO_COMMAND("build")],
 };
+
+const TEST:Step.t = {
+	id:"TEST",
+	emoji: "🧪",
+	name: (locale)=>
+		match(locale)
+		.with("en-US", ()=>"Execute Test")
+		.with("ko-KR",()=>"테스트 실행")
+		.with("ja-JP",()=>"テスト実行")
+		.exhaustive(),
+	command: ({ packageManager }) => `${packageManager} run test`,
+	skipCondition: [SkipCondition.NO_PRODUCT_TYPESCRIPT_FILES, SkipCondition.NO_COMMAND("test")],		
+}
 
 export const STEP_PRESET = {
   _ALWAYS_FAILING_ONLY_FOR_TESTING,
@@ -105,6 +118,7 @@ export const STEP_PRESET = {
   FORMAT_TYPESCRIPT_FILES,
   TYPE_CHECKING,
   BUILD,
+	TEST,
 };
 
 export const STEPS_KIND = Object.keys(STEP_PRESET);

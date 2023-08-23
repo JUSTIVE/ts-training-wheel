@@ -18,6 +18,7 @@ export type t = {
   safeBranch: boolean;
   locale: Locales;
   verbose: boolean;
+  availableCommands: string[];
 };
 
 type StagedFile = string;
@@ -56,6 +57,13 @@ export const determineSafeBranch = (unSafeBranchList: string[]): boolean => {
   }
 };
 
+//read available scripts from package.json
+export const collectScript  = ()=>{
+  const packageJSON = JSON.parse(execSync("cat package.json").toString())
+  const scripts = packageJSON.scripts
+  return Object.keys(scripts)
+}
+
 export const make = async ({
   sourceDir,
   unSafeBranchList,
@@ -73,5 +81,6 @@ export const make = async ({
     safeBranch: pipe(unSafeBranchList, determineSafeBranch),
     locale,
     verbose,
+    availableCommands: collectScript()??[],
   };
 };
