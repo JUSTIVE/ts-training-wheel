@@ -40,9 +40,14 @@ export const getSkipCondition = (envSet: EnvSet.t, { skipCondition }: t) =>
 export const getErrorMessage = (
   envSet: EnvSet.t,
   { errorMessage, recommendedAction, command }: t,
-) =>
-  errorMessage ??
-  (recommendedAction ? recommendedAction(envSet) : command(envSet));
+):string =>
+  errorMessage
+    ? errorMessage(envSet.locale)
+    : recommendedAction
+      ? recommendedAction(envSet)
+      : command(envSet);
+
+  
 
 export const runner = async (
   step: t,
